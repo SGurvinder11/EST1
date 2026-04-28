@@ -10,12 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    # Backend setup
-    - name: Setup Python
-      uses: actions/setup-python@v4
+    # Backend
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
@@ -29,16 +27,15 @@ jobs:
         cd backend
         pytest
 
-    # Frontend setup
-    - name: Setup Node
-      uses: actions/setup-node@v3
+    # Frontend
+    - uses: actions/setup-node@v3
       with:
         node-version: '18'
 
     - name: Install frontend dependencies
-  run: |
-    cd frontend
-    npm install --legacy-peer-deps
+      run: |
+        cd frontend
+        npm install --legacy-peer-deps
 
     - name: Run frontend tests
       run: |
